@@ -1,34 +1,33 @@
 const SessionController = require('../../../src/controllers/session-ctrl')
-const SessionService = require('../../../src/services/session-service')
-const UserService = require('../../../src/services/user-service')
-const Email = require('../../../src/utils/email-validator')
 
-const emailMock = (email) => true
+ const emailMock = (email) => true
+ const passwordMock = (password) => true
+ const userExistsAndCheckPasswordMock = (email, password) => true
+
 
 describe('Testar SessionController', () => {
-    test('Deve retornar o status 200 e o json com o token', async() => {
-        const reqMock = {
-            body: {
-                email: 'teste@teste.com',
-                password: '123456'
-            }
+    const reqMock = {
+        body: {
+            email: 'teste@teste.com',
+            password: '123456'
         }
+    }
 
-        const resMock = {
-            status: (status) => {
-                console.log(status)
-                return {
-                    json: ({token}) => {
-                        console.log({token})
-                    }
-                }
-            }
-        }
+    const resMock = {
+        status: jest.fn(() => {
+            return resMock
+        }),
+        json: jest.fn()
+    }
 
-        const ValidatorEmailGetSpy = await jest.spyOn(Email, 'isValid').mockImplementation(emailMock)
+    it('Deve retornar o status 200 e o json com o token', async() => {
+        
+
+        // const ValidatorEmailGetSpy = await jest.spyOn(Email, 'isValid').mockImplementation(emailMock)
     
 
         await SessionController.create(reqMock, resMock)
-        expect(ValidatorEmailGetSpy).toHaveReturnedWith(true)
+        // expect(ValidatorEmailGetSpy).toHaveReturnedWith(true)
+        expect(resMock.status).toHaveBeenCalledWith(200)
     })
 })

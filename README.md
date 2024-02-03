@@ -1,4 +1,4 @@
-# Churrascômetro
+# Teste Automatizados
 
 ## 📚 Descrição
 

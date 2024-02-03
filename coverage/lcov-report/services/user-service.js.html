@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">34.48% </span>
+                <span class="strong">86.2% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>10/29</span>
+                <span class='fraction'>25/29</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">50% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>1/2</span>
+                <span class='fraction'>2/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/2</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">34.48% </span>
+                <span class="strong">86.2% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>10/29</span>
+                <span class='fraction'>25/29</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -95,56 +95,56 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span></td><td class="text"><pre class="prettyprint lang-js">const User = require('../schemas/User')
 &nbsp;
 class UserService {
-<span class="fstat-no" title="function not covered" >    static async createUser({ name, email, password }) {</span>
-<span class="cstat-no" title="statement not covered" >        const { id } = await User.create({</span>
-<span class="cstat-no" title="statement not covered" >            name,</span>
-<span class="cstat-no" title="statement not covered" >            email,</span>
-<span class="cstat-no" title="statement not covered" >            password</span>
-<span class="cstat-no" title="statement not covered" >        })</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >        return { id }</span>
-<span class="cstat-no" title="statement not covered" >    }</span>
+    static async createUser({ name, email, password }) {
+        const { id } = await User.create({
+            name,
+            email,
+            password
+        })
+&nbsp;
+        return { id }
+    }
 &nbsp;
     static async userExistsAndCheckPassword({email, password}) {
         const user = await User.findOne({ email })
-<span class="cstat-no" title="statement not covered" ><span class="branch-0 cbranch-no" title="branch not covered" ></span></span>
-<span class="cstat-no" title="statement not covered" >        if(!user) {</span>
+&nbsp;
+        if(!user) <span class="branch-0 cbranch-no" title="branch not covered" >{</span>
 <span class="cstat-no" title="statement not covered" >            return false</span>
 <span class="cstat-no" title="statement not covered" >        }</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >        if(password !== user.password) {</span>
+&nbsp;
+        if(password !== user.password) <span class="branch-0 cbranch-no" title="branch not covered" >{</span>
 <span class="cstat-no" title="statement not covered" >            throw { status: 400, message: 'As senhas não batem' }</span>
 <span class="cstat-no" title="statement not covered" >        }</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >        return true</span>
-<span class="cstat-no" title="statement not covered" >    }</span>
+&nbsp;
+        return true
+    }
 }
 &nbsp;
 module.exports = UserService</pre></td></tr></table></pre>
@@ -154,7 +154,7 @@ module.exports = UserService</pre></td></tr></table></pre>
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-01-27T20:15:25.866Z
+                at 2024-02-03T13:58:33.511Z
             </div>
         <script src="../prettify.js"></script>
         <script>

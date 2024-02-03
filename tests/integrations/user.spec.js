@@ -34,4 +34,41 @@ describe("Integration test between BD and Service", () => {
     });
     expect(userFindOne).toBe(true);
   });
+
+  test("Should not create a user with an existing email", async () => {
+    const userData = {
+      name: "Bruno Marques Gonçalves",
+      email: "bruno@marques.com",
+      password: "123456"
+    };
+    await UserService.createUser(userData);
+    let error;
+    try {
+      await UserService.createUser(userData);
+    } catch (e) {
+      error = e;
+    }
+    expect(error).toBeUndefined();
+  });
+
+  test("Should throw an error if the password is incorrect", async () => {
+    const userData = {
+      name: "Bruno Marques Gonçalves",
+      email: "bruno@marques.com",
+      password: "password"
+    };
+    const { id } = await UserService.createUser(userData);
+    let error;
+
+    try {
+      await UserService.userExistsAndCheckPassword({
+        email: userData.email,
+        password: "wrongPassword"
+      });
+    } catch (e) {
+      error = e;
+    }
+    expect(error).toBeDefined();
+    expect(error.status).toBe(400);
+  });
 });

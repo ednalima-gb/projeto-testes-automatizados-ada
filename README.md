@@ -7,6 +7,7 @@ Projeto de Testes Automatizados
 ## 👨🏻‍💻 Executado por
 
 Rodigo Bueno Wecoski ---> <https://github.com/Rodrigobuenow>
+Edna Barboza de Lima ---> <https://github.com/ednalima-gb>
 
 ## 👨🏻‍🏫 Professor
 

@@ -6,7 +6,7 @@ const UserService = require("../../src/services/user-service");
 
 describe("Integration test between BD and Service", () => {
   beforeAll(async () => {
-    await mongoose.connect(process.env.MONGO_DB_URL);
+    await mongoose.connect(process.env.MONGO_DB_URL_EDNA);
   });
   afterAll(async () => {
     await mongoose.connection.close();

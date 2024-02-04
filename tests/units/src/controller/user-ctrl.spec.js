@@ -1,19 +1,19 @@
-const request = require("supertest");
-const UserController = require("../../../../src/controllers/user-ctrl");
-const UserService = require("../../../../src/services/user-service");
-const Email = require("../../../../src/utils/email-validator");
+const request = require('supertest');
+const UserController = require('../../../../src/controllers/user-ctrl');
+const UserService = require('../../../../src/services/user-service');
+const Email = require('../../../../src/utils/email-validator');
 
-jest.mock("../../../../src/services/user-service");
-jest.mock("../../../../src/utils/email-validator");
+jest.mock('../../../../src/services/user-service');
+jest.mock('../../../../src/utils/email-validator');
 
-describe("UserController", () => {
+describe('UserController', () => {
   let req;
   let res;
 
   beforeEach(() => {
     req = {
       body: {},
-      userEmail: "",
+      userEmail: '',
     };
     res = {
       status: jest.fn().mockReturnThis(),
@@ -21,30 +21,30 @@ describe("UserController", () => {
     };
   });
 
-  it("should return 400 if email is invalid", async () => {
+  it('should return 400 if email is invalid', async () => {
     Email.isValid = jest.fn().mockReturnValue(false);
-    req.body = { name: "name", email: "invalid", password: "password" };
+    req.body = { name: 'name', email: 'invalid', password: 'password' };
 
     await UserController.create(req, res);
 
     expect(res.status).toHaveBeenCalledWith(400);
-    expect(res.json).toHaveBeenCalledWith("Email inválido");
+    expect(res.json).toHaveBeenCalledWith('Email inválido');
   });
 
-  it("should return 400 if password is not provided", async () => {
+  it('should return 400 if password is not provided', async () => {
     Email.isValid = jest.fn().mockReturnValue(true);
-    req.body = { name: "name", email: "email", password: "" };
+    req.body = { name: 'name', email: 'email', password: '' };
 
     await UserController.create(req, res);
 
     expect(res.status).toHaveBeenCalledWith(400);
-    expect(res.json).toHaveBeenCalledWith("Senha inválida");
+    expect(res.json).toHaveBeenCalledWith('Senha inválida');
   });
 
-  it("should return 200 and user id if user is created successfully", async () => {
+  it('should return 200 and user id if user is created successfully', async () => {
     Email.isValid = jest.fn().mockReturnValue(true);
     UserService.createUser = jest.fn().mockResolvedValue({ id: 1 });
-    req.body = { name: "name", email: "email", password: "password" };
+    req.body = { name: 'name', email: 'email', password: 'password' };
 
     await UserController.create(req, res);
 
@@ -52,12 +52,23 @@ describe("UserController", () => {
     expect(res.json).toHaveBeenCalledWith({ id: 1 });
   });
 
-  it("should return 200 and a message", async () => {
-    req.userEmail = "email";
+  it('should return 200 and a message', async () => {
+    req.userEmail = 'email';
 
     await UserController.changePassword(req, res);
 
     expect(res.status).toHaveBeenCalledWith(200);
-    expect(res.json).toHaveBeenCalledWith({ message: "ok" });
+    expect(res.json).toHaveBeenCalledWith({ message: 'ok' });
+  });
+
+  test('Teste para retornar um erro 500 e mensagem Server Error', async () => {
+    Email.isValid = jest.fn().mockReturnValue(true);
+    UserService.createUser = jest.fn().mockRejectedValue('error');
+    req.body = { name: 'name', email: 'email', password: 'password' };
+
+    await UserController.create(req, res);
+
+    expect(res.status).toHaveBeenCalledWith(500);
+    expect(res.json).toHaveBeenCalledWith('Server Error');
   });
 });

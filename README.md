@@ -8,7 +8,8 @@ Projeto de Testes Automatizados
 
 Rodigo Bueno Wecoski ---> <https://github.com/Rodrigobuenow><br>
 Edna Barboza de Lima ---> <https://github.com/ednalima-gb><br>
-Bruno Marques Gonçalves ---> <https://github.com/bruno-marqs>
+Bruno Marques Gonçalves ---> <https://github.com/bruno-marqs><br>
+Edrielle Duarte dos Santos ---> <https://github.com/edrielleduarte>
 
 ## 👨🏻‍🏫 Professor
 
